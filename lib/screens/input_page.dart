@@ -1,14 +1,5 @@
 import 'package:flutter/material.dart';
 
-class BMICalculator extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: InputPage(),
-    );
-  }
-}
-
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
@@ -24,9 +15,12 @@ class _InputPageState extends State<InputPage> {
       body: Center(
         child: Text('Body Text'),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {},
+      floatingActionButton: Theme(
+        data: ThemeData(accentColor: Colors.purple),
+        child: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {},
+        ),
       ),
     );
   }
