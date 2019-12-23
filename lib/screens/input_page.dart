@@ -12,8 +12,36 @@ class _InputPageState extends State<InputPage> {
       appBar: AppBar(
         title: Text('BMI Calculator'),
       ),
-      body: Center(
-        child: Text('Body Text'),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: ReusableCard(),
+                ),
+                Expanded(
+                  child: ReusableCard()
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: ReusableCard()
+          ),
+          Expanded(
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: ReusableCard()
+                ),
+                Expanded(
+                  child: ReusableCard()
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
       floatingActionButton: Theme(
         data: ThemeData(accentColor: Colors.purple),
@@ -21,6 +49,23 @@ class _InputPageState extends State<InputPage> {
           child: Icon(Icons.add),
           onPressed: () {},
         ),
+      ),
+    );
+  }
+}
+
+class ReusableCard extends StatelessWidget {
+  const ReusableCard({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(15.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        color: Color(0xFF1D1E33),
       ),
     );
   }
