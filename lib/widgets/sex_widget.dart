@@ -22,7 +22,7 @@ class SexWidget extends StatelessWidget {
           height: 15.0,
         ),
         Text(
-          'MALE',
+          sexText,
           style: kLabelTextStyle,
           ),
       ],
