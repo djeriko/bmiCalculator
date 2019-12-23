@@ -1,9 +1,7 @@
+import 'package:bmi_calculator/helpers/constants.dart';
 import 'package:flutter/material.dart';
 
-const labelTextStyle = TextStyle(
-  fontSize: 18.0,
-  color: Color(0xFF8D8E98)
-);
+
 
 class SexWidget extends StatelessWidget {
   const SexWidget({@required this.sexText, @required this.sexIcon});
@@ -25,7 +23,7 @@ class SexWidget extends StatelessWidget {
         ),
         Text(
           'MALE',
-          style: labelTextStyle,
+          style: kLabelTextStyle,
           ),
       ],
     );
