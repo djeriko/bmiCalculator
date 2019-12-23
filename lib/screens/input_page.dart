@@ -31,40 +31,36 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReusableCard(
+                    onPress: (){
                       setState(() {
                         selectedGender = GenderType.male;
                       });
                     },
-                    child: ReusableCard(
-                      cardColor: selectedGender == GenderType.male
-                          ? activeCardColor
-                          : inactiveCardColor,
-                      cardChild: SexWidget(
-                        sexText: 'MALE',
-                        sexIcon: FontAwesomeIcons.mars,
-                      ),
+                    cardColor: selectedGender == GenderType.male
+                        ? activeCardColor
+                        : inactiveCardColor,
+                    cardChild: SexWidget(
+                      sexText: 'MALE',
+                      sexIcon: FontAwesomeIcons.mars,
                     ),
                   ),
                 ),
                 Expanded(
-                    child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      selectedGender = GenderType.female;
-                    });
-                  },
-                  child: ReusableCard(
-                    cardColor: selectedGender == GenderType.female
-                        ? activeCardColor
-                        : inactiveCardColor,
-                    cardChild: SexWidget(
-                      sexText: 'FEMALE',
-                      sexIcon: FontAwesomeIcons.venus,
-                    ),
-                  ),
-                )),
+                    child: ReusableCard(
+                      onPress: (){
+                        setState(() {
+                          selectedGender = GenderType.female;
+                        });
+                      },
+                      cardColor: selectedGender == GenderType.female
+                          ? activeCardColor
+                          : inactiveCardColor,
+                      cardChild: SexWidget(
+                        sexText: 'FEMALE',
+                        sexIcon: FontAwesomeIcons.venus,
+                      ),
+                    )),
               ],
             ),
           ),
