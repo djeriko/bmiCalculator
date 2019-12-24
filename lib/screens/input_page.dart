@@ -15,6 +15,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   GenderType selectedGender;
   int height = 180;
+  int weight = 60;
+  int age = 18;
 
   @override
   Widget build(BuildContext context) {
@@ -88,12 +90,13 @@ class _InputPageState extends State<InputPage> {
                 ),
                 SliderTheme(
                   data: SliderTheme.of(context).copyWith(
-                    activeTrackColor: Colors.white,
-                    thumbColor: Color(0xFFEB1555),
-                    overlayColor: Color(0x29EB1555),
-                    thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
-                    overlayShape: RoundSliderOverlayShape(overlayRadius: 25.0)
-                  ),
+                      activeTrackColor: Colors.white,
+                      thumbColor: Color(0xFFEB1555),
+                      overlayColor: Color(0x29EB1555),
+                      thumbShape:
+                          RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                      overlayShape:
+                          RoundSliderOverlayShape(overlayRadius: 25.0)),
                   child: Slider(
                     value: height.toDouble(),
                     min: 120.0,
@@ -115,10 +118,38 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                     child: ReusableCard(
                   cardColor: kActiveCardColor,
+                  cardChild: BottomCard(
+                    title: 'WEIGHT',
+                    value: weight,
+                    onPressMinus: (){
+                      setState(() {
+                        weight--;
+                      });
+                    },
+                    onPressPlus: (){
+                      setState(() {
+                        weight++;
+                      });
+                    },
+                  )
                 )),
                 Expanded(
                     child: ReusableCard(
                   cardColor: kActiveCardColor,
+                  cardChild: BottomCard(
+                    title: 'AGE',
+                    value: age,
+                    onPressMinus: (){
+                      setState(() {
+                        age--;
+                      });
+                    },
+                    onPressPlus: (){
+                      setState(() {
+                        age++;
+                      });
+                    },
+                  )
                 )),
               ],
             ),
@@ -138,6 +169,90 @@ class _InputPageState extends State<InputPage> {
           onPressed: () {},
         ),
       ),
+    );
+  }
+}
+
+class CardWithTwoButtons extends StatelessWidget {
+  const CardWithTwoButtons(
+      {this.onPressLeft, this.onPressRight, this.iconLeft, this.iconRight});
+
+  final Function onPressLeft;
+  final Function onPressRight;
+  final IconData iconLeft;
+  final IconData iconRight;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        RoundIconButton(
+          icon: iconLeft,
+          onPress: onPressLeft,
+        ),
+        RoundIconButton(
+          icon: iconRight,
+          onPress: onPressRight,
+        ),
+      ],
+    );
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  RoundIconButton({this.icon, this.onPress});
+
+  final IconData icon;
+  final Function onPress;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      child: Icon(icon),
+      elevation: 0.0,
+      constraints: BoxConstraints.tightFor(width: 56.0, height: 56.0),
+      shape: CircleBorder(),
+      fillColor: Color(0xFF4C4F5E),
+      onPressed: onPress,
+    );
+  }
+}
+
+class BottomCard extends StatelessWidget {
+  BottomCard({this.title, this.value, this.onPressMinus, this.onPressPlus});
+  final String title;
+  final int value;
+  final Function onPressMinus;
+  final Function onPressPlus;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          title,
+          style: kLabelTextStyle,
+        ),
+        Text(
+          value.toString(),
+          style: kNumberTextStyle,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            RoundIconButton(
+              icon: FontAwesomeIcons.minus,
+              onPress: onPressMinus,
+            ),
+            RoundIconButton(
+              icon: FontAwesomeIcons.plus,
+              onPress: onPressPlus,
+            ),
+          ],
+        )
+      ],
     );
   }
 }
