@@ -108,7 +108,7 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                   ),
-                )
+                ),
               ],
             ),
           )),
@@ -185,7 +185,7 @@ class CardWithTwoButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         RoundIconButton(
           icon: iconLeft,
@@ -240,12 +240,13 @@ class BottomCard extends StatelessWidget {
           style: kNumberTextStyle,
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             RoundIconButton(
               icon: FontAwesomeIcons.minus,
               onPress: onPressMinus,
             ),
+            SizedBox(width: 10.0,),
             RoundIconButton(
               icon: FontAwesomeIcons.plus,
               onPress: onPressPlus,
