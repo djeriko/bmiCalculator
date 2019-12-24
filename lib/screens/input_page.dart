@@ -1,4 +1,5 @@
 import 'package:bmi_calculator/helpers/constants.dart';
+import 'package:bmi_calculator/screens/results.dart';
 import 'package:bmi_calculator/widgets/reusable_card.dart';
 import 'package:bmi_calculator/widgets/sex_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -117,49 +118,60 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                     child: ReusableCard(
-                  cardColor: kActiveCardColor,
-                  cardChild: BottomCard(
-                    title: 'WEIGHT',
-                    value: weight,
-                    onPressMinus: (){
-                      setState(() {
-                        weight--;
-                      });
-                    },
-                    onPressPlus: (){
-                      setState(() {
-                        weight++;
-                      });
-                    },
-                  )
-                )),
+                        cardColor: kActiveCardColor,
+                        cardChild: BottomCard(
+                          title: 'WEIGHT',
+                          value: weight,
+                          onPressMinus: () {
+                            setState(() {
+                              weight--;
+                            });
+                          },
+                          onPressPlus: () {
+                            setState(() {
+                              weight++;
+                            });
+                          },
+                        ))),
                 Expanded(
                     child: ReusableCard(
-                  cardColor: kActiveCardColor,
-                  cardChild: BottomCard(
-                    title: 'AGE',
-                    value: age,
-                    onPressMinus: (){
-                      setState(() {
-                        age--;
-                      });
-                    },
-                    onPressPlus: (){
-                      setState(() {
-                        age++;
-                      });
-                    },
-                  )
-                )),
+                        cardColor: kActiveCardColor,
+                        cardChild: BottomCard(
+                          title: 'AGE',
+                          value: age,
+                          onPressMinus: () {
+                            setState(() {
+                              age--;
+                            });
+                          },
+                          onPressPlus: () {
+                            setState(() {
+                              age++;
+                            });
+                          },
+                        ))),
               ],
             ),
           ),
-          Container(
-            color: kBottomContainerColor,
-            margin: EdgeInsets.only(top: 15.0),
-            height: kBottomContainerHeight,
-            width: double.infinity,
-          )
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ResultPage()));
+            },
+            child: Container(
+              color: kBottomContainerColor,
+              margin: EdgeInsets.only(top: 10.0),
+              height: kBottomContainerHeight,
+              padding: EdgeInsets.only(bottom: 10.0),
+              width: double.infinity,
+              child: Center(
+                child: Text(
+                  'CALCULATE',
+                  style: kLargeButtonTextStyle,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
       floatingActionButton: Theme(
@@ -246,7 +258,9 @@ class BottomCard extends StatelessWidget {
               icon: FontAwesomeIcons.minus,
               onPress: onPressMinus,
             ),
-            SizedBox(width: 10.0,),
+            SizedBox(
+              width: 10.0,
+            ),
             RoundIconButton(
               icon: FontAwesomeIcons.plus,
               onPress: onPressPlus,
